@@ -3,7 +3,9 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import { styled } from 'stitches.config'
 import { Table } from '@geist-ui/core'
-import React from 'react'
+import { animate, glide } from "motion"
+import React, { useEffect } from 'react'
+import { BatteryIcon, WifiIcon } from '@iconicicons/react'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -29,7 +31,6 @@ const Card = styled("div", {
   borderRadius: '6px',
   backgroundColor: '$mauveA2',
   flexDirection: 'column',
-  minWidth: '420px',
   width: '100%',
   gap: '$2'
 })
@@ -53,12 +54,24 @@ const GlossyCard = styled('div', {
   background: 'linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)',
   borderRadius: '6px',
   width: 'fit-content',
-  padding: '$2'
+  padding: '$3',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$3'
 })
 
 
 
 export default function Home() {
+
+  useEffect(() => {
+    animate(
+      "#graphics",
+      { x: 0, opacity: 1 },
+      { easing: glide({ velocity: -100 }) }
+    )
+  }, [])
+
 
   return (
     <>
@@ -73,86 +86,140 @@ export default function Home() {
           maxWidth: '1280px'
         }}>
           <Box css={{
-            flexDirection: 'column',
-            gap: '$3',
-          }}>
-            <Card>
-              <CardTitle>
-                Lightning fast look up
-              </CardTitle>
-              <CardDescription>
-                Query result are kept in-memory, gauranteeing near-instant response on cache hits.
-              </CardDescription>
-            </Card>
-            <Card>
-              <CardTitle>
-                Self-updating cache
-              </CardTitle>
-              <CardDescription>
-                ReadySet listens to changes in underlying database and keeps the cache updated.
-              </CardDescription>
-            </Card>
-            <Card>
-              <CardTitle>
-                Scale your database without scaling your database
-              </CardTitle>
-              <CardDescription>
-                ReadySet can handle your query traffic and protect your database.
-              </CardDescription>
-            </Card>
-          </Box>
-          <Box css={{
-            gap: '$3',
+            height: '100%',
             width: '100%',
-            minWidth: '900px',
-          }}>
+            justifyContent: 'space-between',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+            id="graphics"
+          >
             <Box css={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              height: '100%',
-              width: '900px',
-              justifyContent: 'space-between',
-              display: 'flex',
-              alignItems: 'center'
+              borderRadius: '20px',
+              flexDirection: 'column',
+              gap: '$3',
+              padding: '0 $4 $3 $4',
+              border: '1px solid $mauve5',
+              maxWidth: '320px'
             }}>
               <Box css={{
-                width: "160px",
-                height: '300px',
-                borderRadius: '20px',
-                backgroundColor: 'gray'
-              }}></Box>
-              <Box css={{
-                flexDirection: 'column',
-                gap: '$3'
+                gap: '$2',
+                width: '100%',
+                justifyContent: ' flex-end',
+                marginTop: '$1'
               }}>
-                <GlossyCard css={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}>
-                  <Image src={"Logo.svg"} height={36} width={36} alt={'ReadySet Logo'}></Image>
-                </GlossyCard>
-                <GlossyCard css={{
-                }}>ReadySet</GlossyCard>
+                <Image src={"5g.svg"} height={20} width={20} alt={'5g icon'}></Image>
+                <BatteryIcon width={20} height={20} />
+                <WifiIcon width={20} height={20} />
               </Box>
-              <Box css={{
-                flexDirection: 'column',
-                gap: '$3'
-
-              }}> <GlossyCard css={{
+              <Card>
+                <CardTitle>
+                  Lightning fast look up
+                </CardTitle>
+                <CardDescription>
+                  Guarantee near-instant latency on cache hits.
+                </CardDescription>
+                <button style={{
+                  width: 'fit-content',
+                  marginTop: '16px'
+                }}>
+                  Try me
+                </button>
+              </Card>
+              <Card>
+                <CardTitle>
+                  Self-updating cache
+                </CardTitle>
+                <CardDescription>
+                  Don’t worry about stale reads or implementing cache invalidation.
+                </CardDescription>
+                <button style={{
+                  width: 'fit-content',
+                  marginTop: '16px'
+                }} >
+                  Show me
+                </button>
+              </Card>
+              <Card>
+                <CardTitle>
+                  Scale your reads
+                </CardTitle>
+                <CardDescription>
+                  Protect your database from traffic and horizontally scale.
+                </CardDescription>
+                <button style={{
+                  width: 'fit-content',
+                  marginTop: '16px'
+                }}>
+                  Try me
+                </button>
+              </Card>
+            </Box>
+            <Box css={{
+              flexDirection: 'column',
+              gap: '$3'
+            }}>
+              <GlossyCard css={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
               }}>
-                  <Image src={"database.svg"} height={36} width={36} alt={'Database Icon'}></Image>
-                </GlossyCard>
-                <GlossyCard css={{
-                }}>
-                  Blog articles table
-                  <Table data={
-                    [
-                      {
+                <Image src={"Logo.svg"} height={36} width={36} alt={'ReadySet Logo'}></Image>
+              </GlossyCard>
+              <GlossyCard css={{
+              }}>
+                <Table data={
+                  [
+                    {
+                      id: '1',
+                      author: 'Alana',
+                      title: 'Why ReadySet rocks',
+                      misc: '...',
+                      likes: '621'
+                    },
+                    {
+                      id: '2',
+                      author: 'Jay',
+                      title: 'ReadySet February release',
+                      misc: '...',
+                      likes: '509'
+
+                    },
+                    {
+                      id: '3',
+                      author: 'Griffin',
+                      title: 'Engineering Blog #1',
+                      misc: '...',
+                      likes: '801'
+
+                    },
+                  ]
+                }>
+                  <Table.Column prop="id" label="id" />
+                  <Table.Column prop="author" label="author" />
+                  <Table.Column prop="title" label="title" />
+                  <Table.Column prop="likes" label="likes" />
+
+                </Table>
+              </GlossyCard>
+            </Box>
+            <Box css={{
+              flexDirection: 'column',
+              gap: '$3',
+              position: 'relative'
+
+            }}> <GlossyCard css={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+                <Image src={"database.svg"} height={36} width={36} alt={'Database Icon'}></Image>
+              </GlossyCard>
+              <GlossyCard css={{
+              }}>
+                <Table data={
+                  [
+                    {
                       id: '1',
                       author: 'Alana',
                       title: 'Why ReadySet rocks',
@@ -171,40 +238,44 @@ export default function Home() {
                       misc: '...'
                     },
                   ]
-                  }>
-                    <Table.Column prop="id" label="id" />
-                    <Table.Column prop="author" label="author" />
-                    <Table.Column prop="title" label="title" />
-                  </Table>
-                </GlossyCard>
-                <GlossyCard css={{
-                }}>
-                  Blog Likes Table
-                  <Table data={
-                    [
-                      {
+                }>
+                  <Table.Column prop="id" label="id" />
+                  <Table.Column prop="author" label="author" />
+                  <Table.Column prop="title" label="title" />
+                </Table>
+              </GlossyCard>
+              <GlossyCard css={{
+                position: 'absolute',
+                right: -50,
+                bottom: -200,
+              }}>
+                <Table data={
+                  [
+                    {
                       story_id: '1',
-                      user: 'Griffin'
+                      user: 'Griffin',
+                      timestamp: '...'
                     },
                     {
                       story_id: '1',
-                      user: 'Greg'
+                      user: 'Greg',
+                      timestamp: '...'
+
                     },
                     {
                       story_id: '3',
-                      user: 'David'
-                    },
-                    {
-                      story_id: '2',
-                      user: 'Jesse'
+                      user: 'David',
+                      timestamp: '...'
+
                     },
                   ]
-                  }>
-                    <Table.Column prop="story_id" label="story_id" />
-                    <Table.Column prop="user" label="user" />
-                  </Table>
-                </GlossyCard>
-                </Box>
+                }>
+                  <Table.Column prop="story_id" label="story_id" />
+                  <Table.Column prop="user" label="user" />
+                  <Table.Column prop="timestamp" label="timestamp" />
+
+                </Table>
+              </GlossyCard>
             </Box>
           </Box>
         </Box>
