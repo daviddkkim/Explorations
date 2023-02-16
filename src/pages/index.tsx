@@ -26,13 +26,15 @@ const Box = styled("div", {
 
 const Card = styled("div", {
   display: "flex",
-  border: '1px solid $mauveA5',
+  border: '1px solid $mauveA2',
   padding: "$3",
   borderRadius: '6px',
-  backgroundColor: '$mauveA2',
+  background: 'linear-gradient(transparent,$mauve2)',
   flexDirection: 'column',
   width: '100%',
-  gap: '$2'
+  gap: '$2',
+  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 0px rgba(0, 0, 0, 0.06), 0px 2px 2px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
+
 })
 const CardTitle = styled("h3", {
   fontSize: '$4',
