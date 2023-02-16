@@ -649,17 +649,6 @@ export default function Home() {
           </Box>
         </Box>
       </MainBlock>
-      <MainBlock css={{
-        flexDirection: 'column'
-      }}>
-        <h1>
-          Global CDN for your database
-        </h1>
-        <canvas
-          ref={canvasRef}
-          style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
-        />
-      </MainBlock>
     </>
   )
 }
