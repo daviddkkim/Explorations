@@ -1,7 +1,6 @@
 import { ThemeProvider } from "next-themes";
 import { darkTheme, globalCss } from "stitches.config";
 import type { AppProps } from "next/app";
-import { GeistProvider, CssBaseline } from '@geist-ui/core'
 
 import { useEffect, useState } from "react";
 import React from "react";
