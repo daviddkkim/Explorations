@@ -77,7 +77,8 @@ const TableRow = styled('div', {
   display: 'flex',
   gap: '$2',
   borderBottom: '1px solid $mauve5',
-  padding: '$2'
+  padding: '$2',
+  paddingBottom: 'calc($2 + $1)'
 })
 
 const Line = styled('div', {
