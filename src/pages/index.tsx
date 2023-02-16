@@ -23,14 +23,13 @@ const Box = styled("div", {
 
 const Card = styled("div", {
   display: "flex",
-  border: '1px solid $mauveA2',
+  border: '1px solid $mauveA4',
   padding: "$3",
   borderRadius: '6px',
-  background: 'linear-gradient(transparent,$mauve2)',
+  background: 'linear-gradient(transparent,$mauve1)',
   flexDirection: 'column',
   width: '100%',
   gap: '$2',
-  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 0px rgba(0, 0, 0, 0.06), 0px 2px 2px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
 
 })
 const CardTitle = styled("h3", {
@@ -48,9 +47,8 @@ const CardDescription = styled("p", {
 })
 
 const GlossyCard = styled('div', {
-  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
   border: '1px solid rgba(0, 0, 0, 0.1)',
-  background: 'linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)',
+  background: '#FFFFFF',
   borderRadius: '6px',
   width: 'fit-content',
   padding: '$3',
@@ -211,7 +209,6 @@ export default function Home() {
   const animateReadysetTableinit = () => {
     animate("#rtable", {
       maxHeight: ['66px', '193px'],
-      backgroundColor: ['black', 'inherit']
     },
       { easing: spring(), duration: 3, delay: 2.75 })
 
@@ -367,10 +364,9 @@ export default function Home() {
               flexDirection: 'column',
               gap: '$3',
               padding: '0 $4 $3 $4',
-              border: '1px solid rgba(0, 0, 0, 0.05)',
+              border: '1px solid $mauve5',
               minWidth: '320px',
               backgroundColor: '#ffffff',
-              boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01)',
               position: 'relative',
               zIndex: 9999
             }}>
@@ -495,7 +491,8 @@ export default function Home() {
               <GlossyCard css={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                background: "linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)",
               }}>
                 <Image src={"Logo.svg"} height={36} width={36} alt={'ReadySet Logo'}></Image>
               </GlossyCard>
@@ -543,7 +540,9 @@ export default function Home() {
             }}> <GlossyCard css={{
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              background: "linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)",
+
             }}>
                 <Image src={"database.svg"} height={36} width={36} alt={'Database Icon'}></Image>
               </GlossyCard>
