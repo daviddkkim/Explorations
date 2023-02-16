@@ -1,11 +1,65 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import { styled } from 'stitches.config'
+import { Table } from '@geist-ui/core'
+import React from 'react'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
+const MainBlock = styled("div", {
+  height: '100vh',
+  width: '100vw',
+  backgroundColor: '$mauve1',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '$4',
+})
+
+const Box = styled("div", {
+  display: 'flex'
+})
+
+const Card = styled("div", {
+  display: "flex",
+  border: '1px solid $mauveA5',
+  padding: "$4",
+  borderRadius: '6px',
+  backgroundColor: '$mauveA2',
+  flexDirection: 'column',
+  minWidth: '420px',
+  width: '100%',
+  gap: '$2'
+})
+const CardTitle = styled("h3", {
+  fontSize: '$4',
+  lineHeight: '130%',
+  fontWeight: '500',
+  color: '$mauve12',
+  margin: 0,
+})
+const CardDescription = styled("p", {
+  margin: 0,
+  fontSize: '$3',
+  lineHeight: '130%',
+  color: '$mauve11',
+})
+
+const GlossyCard = styled('div', {
+  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
+  border: '1px solid $mauveA3',
+  background: 'linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)',
+  borderRadius: '6px',
+  width: 'fit-content',
+  padding: '$2'
+})
+
+
+
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -14,110 +68,147 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <MainBlock>
+        <Box css={{
+          maxWidth: '1280px'
+        }}>
+          <Box css={{
+            flexDirection: 'column',
+            gap: '$3',
+          }}>
+            <Card>
+              <CardTitle>
+                Lightning fast look up
+              </CardTitle>
+              <CardDescription>
+                Query result are kept in-memory, gauranteeing near-instant response on cache hits.
+              </CardDescription>
+            </Card>
+            <Card>
+              <CardTitle>
+                Self-updating cache
+              </CardTitle>
+              <CardDescription>
+                ReadySet listens to changes in underlying database and keeps the cache updated.
+              </CardDescription>
+            </Card>
+            <Card>
+              <CardTitle>
+                Scale your database without scaling your database
+              </CardTitle>
+              <CardDescription>
+                ReadySet can handle your query traffic and protect your database.
+              </CardDescription>
+            </Card>
+          </Box>
+          <Box css={{
+            gap: '$3',
+            width: '100%',
+            minWidth: '900px',
+          }}>
+            <Box css={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              height: '100%',
+              width: '900px',
+              justifyContent: 'space-between',
+              display: 'flex',
+              alignItems: 'center'
+            }}>
+              <Box css={{
+                width: "160px",
+                height: '300px',
+                borderRadius: '20px',
+                backgroundColor: 'gray'
+              }}></Box>
+              <Box css={{
+                flexDirection: 'column',
+                gap: '$3'
+              }}>
+                <GlossyCard css={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  <Image src={"Logo.svg"} height={36} width={36} alt={'ReadySet Logo'}></Image>
+                </GlossyCard>
+                <GlossyCard css={{
+                }}>ReadySet</GlossyCard>
+              </Box>
+              <Box css={{
+                flexDirection: 'column',
+                gap: '$3'
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+              }}> <GlossyCard css={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                  <Image src={"database.svg"} height={36} width={36} alt={'Database Icon'}></Image>
+                </GlossyCard>
+                <GlossyCard css={{
+                }}>
+                  Blog articles table
+                  <Table data={
+                    [
+                      {
+                      id: '1',
+                      author: 'Alana',
+                      title: 'Why ReadySet rocks',
+                      misc: '...'
+                    },
+                    {
+                      id: '2',
+                      author: 'Jay',
+                      title: 'ReadySet February release',
+                      misc: '...'
+                    },
+                    {
+                      id: '3',
+                      author: 'Griffin',
+                      title: 'Engineering Blog #1',
+                      misc: '...'
+                    },
+                  ]
+                  }>
+                    <Table.Column prop="id" label="id" />
+                    <Table.Column prop="author" label="author" />
+                    <Table.Column prop="title" label="title" />
+                  </Table>
+                </GlossyCard>
+                <GlossyCard css={{
+                }}>
+                  Blog Likes Table
+                  <Table data={
+                    [
+                      {
+                      story_id: '1',
+                      user: 'Griffin'
+                    },
+                    {
+                      story_id: '1',
+                      user: 'Greg'
+                    },
+                    {
+                      story_id: '3',
+                      user: 'David'
+                    },
+                    {
+                      story_id: '2',
+                      user: 'Jesse'
+                    },
+                  ]
+                  }>
+                    <Table.Column prop="story_id" label="story_id" />
+                    <Table.Column prop="user" label="user" />
+                  </Table>
+                </GlossyCard>
+                </Box>
+            </Box>
+          </Box>
+        </Box>
+      </MainBlock>
     </>
   )
 }
