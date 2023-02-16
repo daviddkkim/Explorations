@@ -27,7 +27,7 @@ const Box = styled("div", {
 const Card = styled("div", {
   display: "flex",
   border: '1px solid $mauveA5',
-  padding: "$4",
+  padding: "$3",
   borderRadius: '6px',
   backgroundColor: '$mauveA2',
   flexDirection: 'column',
@@ -65,11 +65,7 @@ const GlossyCard = styled('div', {
 export default function Home() {
 
   useEffect(() => {
-    animate(
-      "#graphics",
-      { x: 0, opacity: 1 },
-      { easing: glide({ velocity: -100 }) }
-    )
+
   }, [])
 
 
@@ -83,7 +79,8 @@ export default function Home() {
       </Head>
       <MainBlock>
         <Box css={{
-          maxWidth: '1280px'
+          maxWidth: '1280px',
+          width: '100%'
         }}>
           <Box css={{
             height: '100%',
@@ -92,7 +89,6 @@ export default function Home() {
             display: 'flex',
             alignItems: 'center'
           }}
-            id="graphics"
           >
             <Box css={{
               borderRadius: '20px',
@@ -100,7 +96,7 @@ export default function Home() {
               gap: '$3',
               padding: '0 $4 $3 $4',
               border: '1px solid $mauve5',
-              maxWidth: '320px'
+              minWidth: '320px'
             }}>
               <Box css={{
                 gap: '$2',
@@ -113,26 +109,36 @@ export default function Home() {
                 <WifiIcon width={20} height={20} />
               </Box>
               <Card>
-                <CardTitle>
-                  Lightning fast look up
-                </CardTitle>
-                <CardDescription>
-                  Guarantee near-instant latency on cache hits.
-                </CardDescription>
+                <div>
+                  <CardTitle>
+                    Lightning fast look up
+                  </CardTitle>
+                  <CardDescription>
+                    Near-instant latency on cache hits.
+                  </CardDescription>
+                </div>
                 <button style={{
                   width: 'fit-content',
                   marginTop: '16px'
-                }}>
+                }}
+                  onClick={() => {
+                    animate('#line1',
+                      { backgroundColor: ["red", "green", "blue", "yellow", "gray"], height: ['10px', '2px', '6px', '3px', '1px'] }
+                      , { easing: "ease-out", duration: 2 },)
+                  }}
+                >
                   Try me
                 </button>
               </Card>
               <Card>
-                <CardTitle>
-                  Self-updating cache
-                </CardTitle>
-                <CardDescription>
-                  Don’t worry about stale reads or implementing cache invalidation.
-                </CardDescription>
+                <div>
+                  <CardTitle>
+                    Self-updating cache
+                  </CardTitle>
+                  <CardDescription>
+                    Don’t worry about stale reads or implementing cache invalidation.
+                  </CardDescription>
+                </div>
                 <button style={{
                   width: 'fit-content',
                   marginTop: '16px'
@@ -141,12 +147,14 @@ export default function Home() {
                 </button>
               </Card>
               <Card>
-                <CardTitle>
-                  Scale your reads
-                </CardTitle>
-                <CardDescription>
-                  Protect your database from traffic and horizontally scale.
-                </CardDescription>
+                <div>
+                  <CardTitle>
+                    Scale your reads
+                  </CardTitle>
+                  <CardDescription>
+                    Protect your database from traffic and horizontally scale.
+                  </CardDescription>
+                </div>
                 <button style={{
                   width: 'fit-content',
                   marginTop: '16px'
@@ -156,8 +164,16 @@ export default function Home() {
               </Card>
             </Box>
             <Box css={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: '$mauve8'
+            }}
+              id='line1' />
+            <Box css={{
               flexDirection: 'column',
-              gap: '$3'
+              gap: '$3',
+              minWidth: '250px'
+
             }}>
               <GlossyCard css={{
                 display: 'flex',
@@ -166,47 +182,52 @@ export default function Home() {
               }}>
                 <Image src={"Logo.svg"} height={36} width={36} alt={'ReadySet Logo'}></Image>
               </GlossyCard>
-              <GlossyCard css={{
-              }}>
+              <GlossyCard
+                id="rtable">
                 <Table data={
                   [
                     {
-                      id: '1',
-                      author: 'Alana',
-                      title: 'Why ReadySet rocks',
-                      misc: '...',
-                      likes: '621'
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      likes: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                     {
-                      id: '2',
-                      author: 'Jay',
-                      title: 'ReadySet February release',
-                      misc: '...',
-                      likes: '509'
-
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      likes: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                     {
-                      id: '3',
-                      author: 'Griffin',
-                      title: 'Engineering Blog #1',
-                      misc: '...',
-                      likes: '801'
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      likes: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
 
                     },
                   ]
                 }>
-                  <Table.Column prop="id" label="id" />
-                  <Table.Column prop="author" label="author" />
-                  <Table.Column prop="title" label="title" />
-                  <Table.Column prop="likes" label="likes" />
+                  <Table.Column prop="id" />
+                  <Table.Column prop="author" />
+                  <Table.Column prop="title" />
+                  <Table.Column prop="likes" />
 
                 </Table>
               </GlossyCard>
             </Box>
             <Box css={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: '$mauve8'
+            }} id="line2" />
+            <Box css={{
               flexDirection: 'column',
               gap: '$3',
-              position: 'relative'
+              position: 'relative',
+              minWidth: '320px'
 
             }}> <GlossyCard css={{
               display: 'flex',
@@ -215,64 +236,66 @@ export default function Home() {
             }}>
                 <Image src={"database.svg"} height={36} width={36} alt={'Database Icon'}></Image>
               </GlossyCard>
-              <GlossyCard css={{
-              }}>
+              <GlossyCard
+                id="table1">
                 <Table data={
                   [
                     {
-                      id: '1',
-                      author: 'Alana',
-                      title: 'Why ReadySet rocks',
-                      misc: '...'
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                     {
-                      id: '2',
-                      author: 'Jay',
-                      title: 'ReadySet February release',
-                      misc: '...'
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                     {
-                      id: '3',
-                      author: 'Griffin',
-                      title: 'Engineering Blog #1',
-                      misc: '...'
+                      id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      author: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      title: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      misc: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                   ]
                 }>
-                  <Table.Column prop="id" label="id" />
-                  <Table.Column prop="author" label="author" />
-                  <Table.Column prop="title" label="title" />
+                  <Table.Column prop="id" />
+                  <Table.Column prop="author" />
+                  <Table.Column prop="title" />
                 </Table>
               </GlossyCard>
               <GlossyCard css={{
                 position: 'absolute',
                 right: -50,
                 bottom: -200,
-              }}>
+              }}
+                id="table2"
+              >
                 <Table data={
                   [
                     {
-                      story_id: '1',
-                      user: 'Griffin',
-                      timestamp: '...'
+                      story_id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      user: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      timestamp: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
                     },
                     {
-                      story_id: '1',
-                      user: 'Greg',
-                      timestamp: '...'
+                      story_id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      user: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      timestamp: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
 
                     },
                     {
-                      story_id: '3',
-                      user: 'David',
-                      timestamp: '...'
+                      story_id: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      user: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />,
+                      timestamp: <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
 
                     },
                   ]
                 }>
-                  <Table.Column prop="story_id" label="story_id" />
-                  <Table.Column prop="user" label="user" />
-                  <Table.Column prop="timestamp" label="timestamp" />
+                  <Table.Column prop="story_id" />
+                  <Table.Column prop="user" />
+                  <Table.Column prop="timestamp" />
 
                 </Table>
               </GlossyCard>
