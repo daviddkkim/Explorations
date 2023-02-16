@@ -95,6 +95,7 @@ const Button = styled('button', {
   boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03)',
   border: '1px solid $mauveA1',
   padding: "6px 16px",
+  lineHeight:'20px',
   borderRadius: '6px',
   fontSize: '$3',
   display: 'flex',
@@ -450,7 +451,7 @@ export default function Home() {
                   disabled={buttonDisabled}
 
                 >
-                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+                  {buttonDisabled && <SpinnerIcon width={20} height={20}  className='spinner' />}
                   Make a query
                 </Button>
               </Card>
@@ -474,7 +475,7 @@ export default function Home() {
                   }}
                   disabled={buttonDisabled}
                 >
-                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+                  {buttonDisabled && <SpinnerIcon width={20} height={20}  className='spinner' />}
 
                   Update database
                 </Button>
@@ -500,7 +501,7 @@ export default function Home() {
                   disabled={buttonDisabled}
 
                 >
-                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+                  {buttonDisabled && <SpinnerIcon width={20} height={20}  className='spinner' />}
 
                   Spike traffic
                 </Button>
