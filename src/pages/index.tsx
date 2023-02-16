@@ -5,7 +5,7 @@ import { styled } from 'stitches.config'
 import { Table } from '@geist-ui/core'
 import { animate, spring, timeline } from "motion"
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { BatteryIcon, WifiIcon } from '@iconicicons/react'
+import { BatteryIcon, WifiIcon, SpinnerIcon } from '@iconicicons/react'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -93,13 +93,34 @@ const Line = styled('div', {
 const Button = styled('button', {
   background: "linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)",
   boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03)',
-  border:'1px solid $mauveA1',
+  border: '1px solid $mauveA1',
   padding: "6px 16px",
-  borderRadius: '6px'
+  borderRadius: '6px',
+  fontSize: '$3',
+  display: 'flex',
+  gap: '$2',
+  alignItems: 'center'
 })
+
 
 export default function Home() {
 
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+
+  const activateButtonAfterDelay = (time: number) => {
+    setButtonDisabled(true);
+
+    setTimeout(() => { setButtonDisabled(false) }, time)
+
+  }
+
+  useEffect(() => {
+    if (buttonDisabled) {
+      animate('.spinner', {
+        rotate: 360
+      }, { easing: 'ease-out', duration: 1.2, repeat: 2 })
+    }
+  }, [buttonDisabled])
 
   const [additionalReadySetRow, setadditionalReadySetRow] = useState(0)
   /*   const [reads, setReads] = useState(0);
@@ -204,25 +225,25 @@ export default function Home() {
     animateLineTransfer('#line2');
     animateReadysetTableinit();
     animate('#card1', {
-      opacity:[0,1]
+      opacity: [0, 1]
     }, {
       easing: 'ease-out',
       delay: 3.25,
-      duration:0.5
+      duration: 0.5
     })
     animate('#card2', {
-      opacity:[0,1]
+      opacity: [0, 1]
     }, {
       easing: 'ease-out',
       delay: 3.25,
-      duration:0.5
+      duration: 0.5
     })
     animate('#card3', {
-      opacity:[0,1]
+      opacity: [0, 1]
     }, {
       easing: 'ease-out',
       delay: 3.25,
-      duration:0.5
+      duration: 0.5
     })
   }, [])
 
@@ -379,11 +400,14 @@ export default function Home() {
                   onClick={() => {
                     animateLineTransfer("#line1", true)
                     transferReadTable()
+                    activateButtonAfterDelay(100)
                   }
                   }
+                  disabled={buttonDisabled}
 
                 >
-                  Try me
+                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+                  Make a query
                 </Button>
               </Card>
               <Card id="card2">
@@ -392,7 +416,7 @@ export default function Home() {
                     Self-updating cache
                   </CardTitle>
                   <CardDescription>
-                    Don’t worry about stale reads or implementing cache invalidation.
+                    Reacts to updates to the database and keeps the cache fresh
                   </CardDescription>
                 </div>
                 <Button style={{
@@ -401,9 +425,14 @@ export default function Home() {
                 }}
                   onClick={() => {
                     setadditionalReadySetRow(additionalReadySetRow + 1)
+                    activateButtonAfterDelay(1500)
+
                   }}
+                  disabled={buttonDisabled}
                 >
-                  Show me
+                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+
+                  Update database
                 </Button>
               </Card>
               <Card id="card3">
@@ -412,7 +441,7 @@ export default function Home() {
                     Scale your reads
                   </CardTitle>
                   <CardDescription>
-                    Protect your database from traffic and horizontally scale.
+                    Absorb spikes in traffic without scaling your database.
                   </CardDescription>
                 </div>
                 <Button style={{
@@ -422,8 +451,14 @@ export default function Home() {
                   onClick={() => {
                     animateLineTransfer('#line1')
                     animateLineTransfer('.hiddenLine')
-                  }}>
-                  Try me
+                    activateButtonAfterDelay(1500)
+                  }}
+                  disabled={buttonDisabled}
+
+                >
+                  {buttonDisabled && <SpinnerIcon className='spinner' />}
+
+                  Spike traffic
                 </Button>
               </Card>
             </Box>
