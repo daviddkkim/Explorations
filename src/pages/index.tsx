@@ -90,6 +90,14 @@ const Line = styled('div', {
   transition: 'all 150ms ease-out'
 })
 
+const Button = styled('button', {
+  background: "linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)",
+  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03)',
+  border:'1px solid $mauveA1',
+  padding: "6px 16px",
+  borderRadius: '6px'
+})
+
 export default function Home() {
 
 
@@ -364,7 +372,7 @@ export default function Home() {
                     Near-instant latency on cache hits.
                   </CardDescription>
                 </div>
-                <button style={{
+                <Button style={{
                   width: 'fit-content',
                   marginTop: '16px'
                 }}
@@ -376,7 +384,7 @@ export default function Home() {
 
                 >
                   Try me
-                </button>
+                </Button>
               </Card>
               <Card id="card2">
                 <div>
@@ -387,7 +395,7 @@ export default function Home() {
                     Don’t worry about stale reads or implementing cache invalidation.
                   </CardDescription>
                 </div>
-                <button style={{
+                <Button style={{
                   width: 'fit-content',
                   marginTop: '16px'
                 }}
@@ -396,7 +404,7 @@ export default function Home() {
                   }}
                 >
                   Show me
-                </button>
+                </Button>
               </Card>
               <Card id="card3">
                 <div>
@@ -407,7 +415,7 @@ export default function Home() {
                     Protect your database from traffic and horizontally scale.
                   </CardDescription>
                 </div>
-                <button style={{
+                <Button style={{
                   width: 'fit-content',
                   marginTop: '16px'
                 }}
@@ -416,7 +424,7 @@ export default function Home() {
                     animateLineTransfer('.hiddenLine')
                   }}>
                   Try me
-                </button>
+                </Button>
               </Card>
             </Box>
             <Box css={{
