@@ -94,7 +94,7 @@ export default function Home() {
 
 
   const [additionalReadySetRow, setadditionalReadySetRow] = useState(0)
-
+  const [reads, setReads] = useState(0);
 
 
   const animateFirstTable = () => {
@@ -168,8 +168,8 @@ export default function Home() {
           { visibility: 'hidden' }, { easing: "ease-in", duration: 0.1 }]
       ])
       animate('#rtable', {
-        scale: [1.15,1]
-      }, { easing: spring(), duration: 0.5, repeat:2})
+        scale: [1.15, 1]
+      }, { easing: spring(), duration: 0.5, repeat: 2 })
     } else {
 
       animate(line,
@@ -196,6 +196,16 @@ export default function Home() {
     animateLineTransfer('#line2');
     animateReadysetTableinit();
   }, [])
+
+  useEffect(() => {
+
+    if(reads <1) return;
+
+    animate('.readTable', {
+      opacity: [1, 0],
+    }, {easing: 'ease-out', duration: 1.5})
+
+  }, [reads])
 
   useEffect(() => {
     if (additionalReadySetRow < 1) return;
@@ -238,6 +248,52 @@ export default function Home() {
     return additionalrows;
   }
 
+  const renderReadTable = () => {
+    let table = []
+    for (let i = 0; i < reads; i++) {
+
+      table.push(
+        <Box css={{
+          position: 'absolute',
+          top: -50 + -35 * (i),
+          left: 100 + 50 * (i),
+          zIndex: 5555 - i
+        }} 
+        className='readTable'>
+          <GlossyCard css={{
+          }}>
+            <TableContainer css={{ flexDirection: 'column' }}>
+              <TableHeader></TableHeader>
+              <TableRow>
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+              </TableRow>
+              <TableRow>
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+
+              </TableRow>
+              <TableRow>
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
+              </TableRow>
+              {
+                additionalReadySetRow > 0 && renderAdditionalRow(true).map((row) => { return row })
+              }
+            </TableContainer>
+          </GlossyCard>
+        </Box>
+      )
+    }
+    return table;
+  }
+
 
   return (
     <>
@@ -257,9 +313,14 @@ export default function Home() {
             width: '100%',
             justifyContent: 'space-between',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            position: 'relative'
           }}
           >
+            {
+              reads > 0 && renderReadTable().map((table) => { 
+                return table })
+            }
             <Box css={{
               borderRadius: '20px',
               flexDirection: 'column',
@@ -269,7 +330,10 @@ export default function Home() {
               minWidth: '320px',
               backgroundColor: '#ffffff',
               boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01)',
+              position: 'relative',
+              zIndex: 9999
             }}>
+
               <Box css={{
                 gap: '$2',
                 width: '100%',
@@ -295,6 +359,7 @@ export default function Home() {
                 }}
                   onClick={() => {
                     animateLineTransfer("#line1", true)
+                    setReads(reads + 1)
                   }}
                 >
                   Try me
