@@ -97,7 +97,6 @@ export default function Home() {
 
 
 
-
   const animateFirstTable = () => {
     timeline(
       [
@@ -154,10 +153,29 @@ export default function Home() {
   }
 
   const animateLineTransfer = (line: string, fast?: boolean) => {
-    animate(line,
-      { borderBottom: ['2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '1px solid hsl(278, 4.1%, 89.1%)'] }
-      , { easing: "ease-in", duration: fast ? 0.5 : 2.75 },)
 
+    if (line.includes('hidden')) {
+      timeline([
+        [line,
+          { visibility: 'visible' }, { easing: "ease-in", duration: 0.1 }],
+        [line,
+          {
+            borderBottom: ['2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '1px solid hsl(278, 4.1%, 89.1%)'],
+
+          }
+          , { easing: "ease-in", duration: 2 },],
+        [line,
+          { visibility: 'hidden' }, { easing: "ease-in", duration: 0.1 }]
+      ])
+      animate('#rtable', {
+        scale: [1.15,1]
+      }, { easing: spring(), duration: 0.5, repeat:2})
+    } else {
+
+      animate(line,
+        { borderBottom: ['2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '1px solid hsl(278, 4.1%, 89.1%)'] }
+        , { easing: "ease-in", duration: fast ? 0.1 : 2.75 },)
+    }
   }
 
   const animateReadysetTableinit = () => {
@@ -168,6 +186,7 @@ export default function Home() {
       { easing: spring(), duration: 3, delay: 2.75 })
 
   }
+
 
 
 
@@ -182,9 +201,17 @@ export default function Home() {
     if (additionalReadySetRow < 1) return;
     console.log('here')
     animate(('#table2'), {
-      maxHeight: [`${190+ (37 * (additionalReadySetRow-1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+      maxHeight: [`${190 + (37 * (additionalReadySetRow - 1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
     }, { easing: spring(), duration: 1, delay: 0.25 })
 
+    timeline([
+      [('#table2'), {
+        maxHeight: [`${190 + (37 * (additionalReadySetRow - 1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+      }, { easing: spring(), duration: 0.5, delay: 0.1 }],
+      [('#rtable'), {
+        maxHeight: [`${190 + (37 * (additionalReadySetRow - 1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+      }, { easing: spring(), duration: 0.5, delay: 0.1 }],
+    ],)
   }, [additionalReadySetRow])
 
   const renderAdditionalRow = (readySet?: boolean) => {
@@ -287,8 +314,7 @@ export default function Home() {
                   marginTop: '16px'
                 }}
                   onClick={() => {
-                    additionalReadySetRow < 3 &&
-                      setadditionalReadySetRow(additionalReadySetRow + 1)
+                    setadditionalReadySetRow(additionalReadySetRow + 1)
                   }}
                 >
                   Show me
@@ -306,13 +332,40 @@ export default function Home() {
                 <button style={{
                   width: 'fit-content',
                   marginTop: '16px'
-                }}>
+                }}
+                  onClick={() => {
+                    animateLineTransfer('#line1')
+                    animateLineTransfer('.hiddenLine')
+                  }}>
                   Try me
                 </button>
               </Card>
             </Box>
-            <Line
-              id='line1' />
+            <Box css={{
+              width: '100%',
+              gap: '$2',
+              flexDirection: 'column'
+            }}>
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+              <Line id="line1" />
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+              <Line className='hiddenLine' css={{
+                visibility: 'hidden'
+              }} />
+            </Box>
             <Box css={{
               flexDirection: 'column',
               gap: '$3',
@@ -355,7 +408,11 @@ export default function Home() {
                 </TableContainer>
               </GlossyCard>
             </Box>
-            <Line id="line2" />
+            <Box css={{
+              width: '100%'
+            }}>
+              <Line id="line2" />
+            </Box>
             <Box css={{
               flexDirection: 'column',
               gap: '$3',
