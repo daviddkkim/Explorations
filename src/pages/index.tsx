@@ -4,7 +4,7 @@ import { Inter } from '@next/font/google'
 import { styled } from 'stitches.config'
 import { Table } from '@geist-ui/core'
 import { animate, spring, timeline } from "motion"
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { BatteryIcon, WifiIcon } from '@iconicicons/react'
 
 
@@ -49,8 +49,8 @@ const CardDescription = styled("p", {
 })
 
 const GlossyCard = styled('div', {
-  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
-  border: '1px solid $mauveA3',
+  boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01);',
+  border: '1px solid rgba(0, 0, 0, 0.1)',
   background: 'linear-gradient(180deg, #FFFFFF 35.22%, #F3F4F6 100%)',
   borderRadius: '6px',
   width: 'fit-content',
@@ -58,7 +58,8 @@ const GlossyCard = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$3',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  transition: 'all 150ms ease-out'
 })
 
 const TableContainer = styled('div', {
@@ -91,57 +92,124 @@ const Line = styled('div', {
 
 export default function Home() {
 
-  useEffect(() => {
 
+  const [additionalReadySetRow, setadditionalReadySetRow] = useState(0)
+
+
+
+
+  const animateFirstTable = () => {
     timeline(
       [
-        /*   ["#tableCell1", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell2", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell3", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell4", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell5", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell6", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell7", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell8", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell9", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell10", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell11", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell12", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-          ["#tableCell13", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }], */
-        ["#tableCell14", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell15", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell16", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell17", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell18", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell19", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell20", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell21", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell22", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell23", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell24", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell25", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell26", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell27", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell28", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell29", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
-        ["#tableCell30", { backgroundColor: ["dark-gray", "white", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }]
+        ["#tableCell1", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell2", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell3", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell4", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell5", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell6", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell7", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell8", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell9", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell10", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell11", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell12", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell13", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
       ], {
       repeat: 1
     }
     );
+  }
 
-      animate('#line2',
-      { borderBottom: ['2px dashed hsl(278, 4.1%, 89.1%)', '1px dashed black','2px dashed hsl(278, 4.1%, 89.1%)','1px dashed black','2px dashed hsl(278, 4.1%, 89.1%)','1px solid hsl(278, 4.1%, 89.1%)'] }
-      , { easing: "ease-in", duration: 2.75 },)
+  const animateNewCell = () => {
+    animate('.newcell', {
+      backgroundColor: 'red'
+    },
+      { easing: "ease-out", duration: 1 })
+  }
 
+  const animateSecondTable = () => {
+    timeline(
+      [
+        ["#tableCell14", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell15", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell16", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell17", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell18", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell19", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell20", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell21", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell22", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell23", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell24", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell25", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell26", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell27", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell28", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell29", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }],
+        ["#tableCell30", { backgroundColor: ["'hsl(283, 4.4%, 91.3%)'", "hsl(255, 3.7%, 78.8%)", 'hsl(283, 4.4%, 91.3%)'] }, { easing: 'ease-out', duration: .07 }]
+      ], {
+      repeat: 1
+    }
+    );
+  }
+
+  const animateLineTransfer = (line: string, fast?: boolean) => {
+    animate(line,
+      { borderBottom: ['2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '2px dashed hsl(253, 3.5%, 53.5%)', '2px dashed hsl(278, 4.1%, 89.1%)', '1px solid hsl(278, 4.1%, 89.1%)'] }
+      , { easing: "ease-in", duration: fast ? 0.5 : 2.75 },)
+
+  }
+
+  const animateReadysetTableinit = () => {
     animate("#rtable", {
-      maxHeight: ['66px', '300px'],
+      maxHeight: ['66px', '193px'],
       backgroundColor: ['black', 'inherit']
     },
       { easing: spring(), duration: 3, delay: 2.75 })
 
+  }
 
+
+
+  useEffect(() => {
+
+    animateSecondTable();
+    animateLineTransfer('#line2');
+    animateReadysetTableinit();
   }, [])
+
+  useEffect(() => {
+    if (additionalReadySetRow < 1) return;
+    console.log('here')
+    animate(('#table2'), {
+      maxHeight: [`${190+ (37 * (additionalReadySetRow-1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+    }, { easing: spring(), duration: 1, delay: 0.25 })
+
+  }, [additionalReadySetRow])
+
+  const renderAdditionalRow = (readySet?: boolean) => {
+    let additionalrows = []
+    for (let i = 0; i < additionalReadySetRow; i++) {
+
+      readySet ? additionalrows.push(
+        <TableRow key={i} id={"newRow" + (i + 1)}>
+          <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+          <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+          <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+          <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+
+        </TableRow>)
+
+        :
+        additionalrows.push(
+          <TableRow key={i} id={"newRow" + (i + 1)}>
+            <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+            <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+            <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} className='newcell' />
+          </TableRow>)
+    }
+    return additionalrows;
+  }
 
 
   return (
@@ -170,10 +238,10 @@ export default function Home() {
               flexDirection: 'column',
               gap: '$3',
               padding: '0 $4 $3 $4',
-              border: '1px solid $mauve5',
+              border: '1px solid rgba(0, 0, 0, 0.05)',
               minWidth: '320px',
               backgroundColor: '#ffffff',
-              boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), 0px 4px 4px rgba(0, 0, 0, 0.03), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01)',
+              boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.06), 0px 3px 3px rgba(0, 0, 0, 0.04), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.01)',
             }}>
               <Box css={{
                 gap: '$2',
@@ -185,7 +253,7 @@ export default function Home() {
                 <BatteryIcon width={20} height={20} />
                 <WifiIcon width={20} height={20} />
               </Box>
-              <Card>
+              <Card id="card1">
                 <div>
                   <CardTitle>
                     Lightning fast look up
@@ -199,15 +267,13 @@ export default function Home() {
                   marginTop: '16px'
                 }}
                   onClick={() => {
-                    animate('#line1',
-                      { backgroundColor: ["red", "green", "blue", "yellow", "gray"], height: ['10px', '2px', '6px', '3px', '1px'] }
-                      , { easing: "ease-out", duration: 2 },)
+                    animateLineTransfer("#line1", true)
                   }}
                 >
                   Try me
                 </button>
               </Card>
-              <Card>
+              <Card id="card2">
                 <div>
                   <CardTitle>
                     Self-updating cache
@@ -219,11 +285,16 @@ export default function Home() {
                 <button style={{
                   width: 'fit-content',
                   marginTop: '16px'
-                }} >
+                }}
+                  onClick={() => {
+                    additionalReadySetRow < 3 &&
+                      setadditionalReadySetRow(additionalReadySetRow + 1)
+                  }}
+                >
                   Show me
                 </button>
               </Card>
-              <Card>
+              <Card id="card3">
                 <div>
                   <CardTitle>
                     Scale your reads
@@ -277,10 +348,10 @@ export default function Home() {
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell10"} />
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell11"} />
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell12"} />
-
                   </TableRow>
-
-
+                  {
+                    additionalReadySetRow > 0 && renderAdditionalRow(true).map((row) => { return row })
+                  }
                 </TableContainer>
               </GlossyCard>
             </Box>
@@ -321,13 +392,12 @@ export default function Home() {
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell21"} />
                   </TableRow>
 
-
                 </TableContainer>
               </GlossyCard>
               <GlossyCard css={{
                 position: 'absolute',
-                right: -20,
-                bottom: -108,
+                right: 0,
+                bottom: -38,
               }}
                 id="table2"
               >
@@ -348,8 +418,9 @@ export default function Home() {
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell29"} />
                     <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell30"} />
                   </TableRow>
-
-
+                  {
+                    additionalReadySetRow > 0 && renderAdditionalRow().map((row) => { return row })
+                  }
                 </TableContainer>
               </GlossyCard>
             </Box>
