@@ -445,7 +445,6 @@ export default function Home() {
                   onClick={() => {
                     animateLineTransfer("#line1", true)
                     transferReadTable()
-                    activateButtonAfterDelay(100)
                   }
                   }
                   disabled={buttonDisabled}
