@@ -94,8 +94,8 @@ export default function Home() {
 
 
   const [additionalReadySetRow, setadditionalReadySetRow] = useState(0)
-  const [reads, setReads] = useState(0);
-
+  /*   const [reads, setReads] = useState(0);
+   */
 
   const animateFirstTable = () => {
     timeline(
@@ -195,17 +195,28 @@ export default function Home() {
     animateSecondTable();
     animateLineTransfer('#line2');
     animateReadysetTableinit();
+    animate('#card1', {
+      opacity:[0,1]
+    }, {
+      easing: 'ease-out',
+      delay: 2.75,
+      duration:0.5
+    })
+    animate('#card2', {
+      opacity:[0,1]
+    }, {
+      easing: 'ease-out',
+      delay: 2.75,
+      duration:0.5
+    })
+    animate('#card3', {
+      opacity:[0,1]
+    }, {
+      easing: 'ease-out',
+      delay: 2.75,
+      duration:0.5
+    })
   }, [])
-
-  useEffect(() => {
-
-    if(reads <1) return;
-
-    animate('.readTable', {
-      opacity: [1, 0],
-    }, {easing: 'ease-out', duration: 1.5})
-
-  }, [reads])
 
   useEffect(() => {
     if (additionalReadySetRow < 1) return;
@@ -248,50 +259,17 @@ export default function Home() {
     return additionalrows;
   }
 
-  const renderReadTable = () => {
-    let table = []
-    for (let i = 0; i < reads; i++) {
-
-      table.push(
-        <Box css={{
-          position: 'absolute',
-          top: -50 + -35 * (i),
-          left: 100 + 50 * (i),
-          zIndex: 5555 - i
-        }} 
-        className='readTable'>
-          <GlossyCard css={{
-          }}>
-            <TableContainer css={{ flexDirection: 'column' }}>
-              <TableHeader></TableHeader>
-              <TableRow>
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-              </TableRow>
-              <TableRow>
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-
-              </TableRow>
-              <TableRow>
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-                <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} />
-              </TableRow>
-              {
-                additionalReadySetRow > 0 && renderAdditionalRow(true).map((row) => { return row })
-              }
-            </TableContainer>
-          </GlossyCard>
-        </Box>
-      )
-    }
-    return table;
+  const transferReadTable = () => {
+    animate('#rtable', {
+      scale: [1.05, 1]
+    }, { easing: spring(), duration: 0.5 })
+    animate('#readTable',
+      {
+        scale: 0.4,
+        right: ['50%', '80%'],
+        opacity: [0, 1],
+        visibility: ['hidden', 'visible', 'hidden']
+      }, { easing: spring(), duration: 0.5 })
   }
 
 
@@ -317,10 +295,43 @@ export default function Home() {
             position: 'relative'
           }}
           >
-            {
-              reads > 0 && renderReadTable().map((table) => { 
-                return table })
-            }
+            <Box css={{
+              position: 'absolute',
+              right: '50%',
+              top: '50%',
+              transform: 'translate(50%,-50%)',
+              visibility: 'hidden',
+            }}
+              id="readTable">
+              <GlossyCard css={{
+              }}>
+                <TableContainer css={{ flexDirection: 'column' }}>
+                  <TableHeader></TableHeader>
+                  <TableRow>
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell1"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell2"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell3"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell4"} />
+                  </TableRow>
+                  <TableRow>
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell5"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell6"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell7"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell8"} />
+
+                  </TableRow>
+                  <TableRow>
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell9"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell10"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell11"} />
+                    <Box css={{ backgroundColor: '$mauve5', width: '40px', height: '20px', borderRadius: '6px' }} id={"tableCell12"} />
+                  </TableRow>
+                  {
+                    additionalReadySetRow > 0 && renderAdditionalRow(true).map((row) => { return row })
+                  }
+                </TableContainer>
+              </GlossyCard>
+            </Box>
             <Box css={{
               borderRadius: '20px',
               flexDirection: 'column',
@@ -359,8 +370,10 @@ export default function Home() {
                 }}
                   onClick={() => {
                     animateLineTransfer("#line1", true)
-                    setReads(reads + 1)
-                  }}
+                    transferReadTable()
+                  }
+                  }
+
                 >
                   Try me
                 </button>
