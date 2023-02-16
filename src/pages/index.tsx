@@ -207,21 +207,21 @@ export default function Home() {
       opacity:[0,1]
     }, {
       easing: 'ease-out',
-      delay: 2.75,
+      delay: 3.25,
       duration:0.5
     })
     animate('#card2', {
       opacity:[0,1]
     }, {
       easing: 'ease-out',
-      delay: 2.75,
+      delay: 3.25,
       duration:0.5
     })
     animate('#card3', {
       opacity:[0,1]
     }, {
       easing: 'ease-out',
-      delay: 2.75,
+      delay: 3.25,
       duration:0.5
     })
   }, [])
