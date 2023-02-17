@@ -98,7 +98,10 @@ const Button = styled('button', {
   fontSize: '$3',
   display: 'flex',
   gap: '$2',
-  alignItems: 'center'
+  alignItems: 'center',
+  "&:hover:not(:disabled)": {
+    background: '#F3F4F6'
+  }
 })
 
 
@@ -255,10 +258,10 @@ export default function Home() {
 
     timeline([
       [('#table2'), {
-        maxHeight: [`${190 + (37 * (additionalReadySetRow - 1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+        maxHeight: [`${190 + (45 * (additionalReadySetRow - 1))}}px`, `${193 + (45 * additionalReadySetRow)}px`]
       }, { easing: spring(), duration: 0.5, delay: 0.1 }],
       [('#rtable'), {
-        maxHeight: [`${190 + (37 * (additionalReadySetRow - 1))}}px`, `${193 + (37 * additionalReadySetRow)}px`]
+        maxHeight: [`${190 + (45 * (additionalReadySetRow - 1))}}px`, `${193 + (45 * additionalReadySetRow)}px`]
       }, { easing: spring(), duration: 0.5, delay: 0.1 }],
     ],)
   }, [additionalReadySetRow])
