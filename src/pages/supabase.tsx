@@ -624,7 +624,7 @@ const AboutPage = () => {
                                 </SectionTileTitle>
                             </div>
                             <SectionTileParagraph>
-                                Swap out your existing database connection string with ReadySet's connection string and let ReadySet handle the rest.
+                                Swap out your existing database connection string with ReadySet{"'"}s connection string and let ReadySet handle the rest.
                             </SectionTileParagraph>
 
                         </SectionTileCard>
