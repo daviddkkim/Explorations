@@ -272,9 +272,8 @@ ${breakpoints.tablet} {
 }
 `
 
-
 const SectionTileTitle = styled.h3`
-color: #EDEDEF;
+color: hsl(256, 6.0%, 93.2%);
 margin: 0;
 margin-bottom: 24px;
 font-size: 1.25rem;
@@ -293,7 +292,8 @@ const SectionTileParagraph = styled.p`
   margin:0;
   font-size: 1.125rem;
   line-height: 1.5rem;
-  color: #a09fa6;
+  color: hsl(253, 4.0%, 63.7%);
+
   margin-bottom:24px;
   ${breakpoints.tablet} {
     font-size: .875rem;
