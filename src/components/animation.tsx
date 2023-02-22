@@ -48,7 +48,7 @@ const CardDescription = styled("p", {
 const GlossyCard = styled('div', {
     border: '1px solid $mauve5',
     background: 'linear-gradient(transparent, $colors$mauve3)',
-    backdropFilter:'blur(10px)',
+    backdropFilter: 'blur(10px)',
     borderRadius: '6px',
     width: 'fit-content',
     padding: '$2',
@@ -99,7 +99,9 @@ const Button = styled('button', {
     gap: '$2',
     alignItems: 'center',
     "&:hover:not(:disabled)": {
-        background: '$colors$mauve5'
+        background: '$colors$mauve5',
+        cursor: 'pointer',
+
     }
 })
 

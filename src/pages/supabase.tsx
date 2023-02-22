@@ -43,7 +43,7 @@ ${breakpoints.mobile} {
 
 const HeroAnimation = keyframes`
 0% { opacity: 1; background: #000000; }
-20% { opacity: 1; background: radial-gradient(transparent, #23232650); }
+20% { opacity: 1; background: radial-gradient(transparent, #2E2E3250); }
 100% { opacity: 1; background: #161616;}
 }
 `
@@ -204,6 +204,7 @@ animation-delay: 1.75s;
 
  &:hover {
   background: #232326;
+  cursor: pointer;
 
  }
 
@@ -611,7 +612,7 @@ const AboutPage = () => {
                             display: "block",
                             width: '100%',
                             maxWidth: '800px',
-                            marginTop: '300px',
+                            marginTop: '120px',
 
                         }}>
                             <div style={{ display: 'flex', }}>
