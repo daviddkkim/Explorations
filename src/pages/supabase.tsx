@@ -365,17 +365,22 @@ const AboutPage = () => {
                         <HeroText>
                             Supercharge your
                         </HeroText>
-                        <HeroText style={{
-                            background: "none",
-                            color: '#3fcf8e',
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text'
-                        }}>
-                            <TinyLogoBox style={{ marginRight: "16px", transform: "rotate(-10deg) translate(5%,5%)" }}>
-                                <Image src="/supabase-logo-icon.svg" width={40} height={40} alt={"supabase logo"} />
-                            </TinyLogoBox>
-                            Supabase project
-                        </HeroText>
+                        <div style={{display:'flex', gap:'16px'}}>
+                            <HeroText style={{
+                                background: "none",
+                                color: '#3fcf8e',
+                                backgroundClip: 'text',
+                                WebkitBackgroundClip: 'text'
+                            }}>
+                                <TinyLogoBox style={{ marginRight: "16px", transform: "rotate(-10deg) translate(5%,5%)" }}>
+                                    <Image src="/supabase-logo-icon.svg" width={40} height={40} alt={"supabase logo"} />
+                                </TinyLogoBox>
+                                Supabase
+                            </HeroText>
+                            <HeroText>
+                                project
+                            </HeroText>
+                        </div>
                     </div>
                     <HeroSubText> ReadySet is a  <span style={{ color: "#ededef" }}>self-updating </span>and <span style={{ color: "#ededef" }}>SQL-native</span> cache engine that will give you <span style={{ color: "#ededef" }}>sub-millisecond queries </ span> in a few clicks.</HeroSubText>
                     <HeroButton> Join waitlist</HeroButton>
